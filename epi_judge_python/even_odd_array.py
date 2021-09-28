@@ -8,26 +8,16 @@ from test_framework.test_utils import enable_executor_hook
 
 # [0, 1, 2, 3, 4, 5, 6, 7, 8]
 def even_odd(A: List[int]) -> None:
-    start: int = 0
-    end: int = len(A)-1
+    next_even: int = 0
+    next_odd: int = len(A)-1
 
-    while start < end:
-        if is_even(A[start]):
-            start += 1
-
-            if is_odd(A[end]):
-                end -= 1
-        
-            continue
-
-        if is_even(A[end]):
-            A = swap_values(start, end, A)
-
-            start += 1
-            end -= 1
+    while next_even < next_odd:
+        if A[next_even] % 2 == 0:
+            next_even += 1
         else:
-            end -= 1
-
+            A[next_even], A[next_odd] = A[next_odd], A[next_even]
+            next_odd -= 1
+            
     return
 
 def is_odd(number: int) -> bool:
